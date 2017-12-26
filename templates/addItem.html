@@ -1,0 +1,29 @@
+{% extends "main.html" %}
+
+{% block content %}
+    {% if item %}
+       <h1>Edit item</h1>
+    {% else %}
+        <h1>New item</h1>
+    {% endif %}
+    <form method="post">
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" id="name" name="name" value="{% if item and  item %}{{item.name}}{% endif%}" placeholder="Name">
+            <input type="hidden" id="item_id" name="item_id" value="{% if item and item %} {{ item.id }} {% endif%}">
+        </div>
+        <div class="form-group">
+            <label for="description">Description</label>
+            <textarea class="form-control" id="description" name="description" placeholder="Description">{% if item %}{{item.description}}{% endif%}</textarea>
+        </div>
+        <div class="form-group">
+            <label for="category">Category</label>
+            <select class="form-group" id="category" name="category">
+                {% for category in categories %}
+                <option {% if item and item.category_id == category.id %} selected='selected' {% endif%} value="{{category.id}}">{{category.name}}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <input type="submit" value="Save">
+    </form>
+{% endblock %}

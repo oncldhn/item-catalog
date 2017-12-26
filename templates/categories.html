@@ -1,0 +1,13 @@
+{% extends "main.html" %}
+
+{% block content %}
+        <div class="row">
+            <ul>
+              {% for category in categories %}
+                  <li >
+                      <a href="{{url_for('showCategory', category_id=category.id)}}"><i class="fa fa-fw fa-dashboard"></i>{{ category.name }}</a>
+                  </li>
+              {% endfor %}
+            </ul>
+        </div>
+{% endblock %}

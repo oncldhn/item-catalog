@@ -1,0 +1,20 @@
+{% extends "main.html" %}
+
+{% block content %}
+    <h1>{{selectedCategory.name}} items</h1>
+    {% if selectedCategory %}
+        <div>
+              {% for item in selectedCategory.items %}
+                  <li >
+                     <a href="{{url_for('showItem', item_id=item.id)}}"><i class="fa fa-fw fa-dashboard"></i>{{ item.name }}</a>
+                  </li>
+              {% endfor %}
+        </div>
+    {% if user %}
+    <br>
+        <div>
+          <a href="{{url_for('addItem')}}">Add Item</a>
+        </div
+    {% endif %}
+  {% endif %}
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends "main.html" %}
+
+{% block content %}
+    <div>
+        <h1>{{selectedItem.name}}</h1>
+        {{selectedItem.description}}
+    <br>
+    {% if user_id and user_id == selectedItem.user_id %}
+        <a href="{{url_for('editItem',item_id=selectedItem.id)}}">Edit</a>
+        <form id="deleteItem" method="post" action="{{url_for('deleteItem', item_id=selectedItem.id)}}">
+            <input type="hidden" id="item_id" name="item_id" value="{{selectedItem.id}}">
+            <a href="#" onclick="document.getElementById('deleteItem').submit()">Delete</a>
+        </form>
+    {% endif %}
+    </div>
+{% endblock %}
